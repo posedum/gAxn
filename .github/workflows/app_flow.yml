@@ -3,16 +3,17 @@
 
 name: gAxn Application workflow
 
-on: #[push]
-  schedule:
-    - cron: "0 0 1 * *"
+on: [push]
+  # schedule:
+  #   - cron: "0 0 1 * *"
 
 jobs:
   Runner:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - name: Checkout master branch
+      uses: actions/checkout@master
     - name: Set up Python 3.7
       uses: actions/setup-python@v2
       with:
@@ -23,4 +24,4 @@ jobs:
         pip install requests click flask pytest
     - name: Run script
       run: |
-        python cron/weather.py
+        python cron/weather.py $GITHUB_WORKSPACE

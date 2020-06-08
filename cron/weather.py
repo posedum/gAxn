@@ -8,9 +8,11 @@ URL_WEATHER = "https://lit-plateau-35814.herokuapp.com/weather"
 
 
 @click.command("weather")
-def main():
+@click.argument("workspace_dir")
+def main(workspace_dir):
     file_path = os.path.join(
-        '/'.join(os.path.abspath(__file__).split('/')[:-2]),
+        # '/'.join(os.path.abspath(__file__).split('/')[:-2]),
+        workspace_dir,
         SETTINGS_FILE
     )
     print(f"Settings file: {file_path}")
