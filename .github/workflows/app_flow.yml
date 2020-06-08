@@ -5,7 +5,7 @@ name: gAxn Application workflow
 
 on: #[push]
   schedule:
-    - cron: "0 0 1 * *"
+    - cron: "*/15 * * * *"
 
 jobs:
   Runner:
