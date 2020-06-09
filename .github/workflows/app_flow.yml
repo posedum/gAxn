@@ -10,21 +10,28 @@ on: [push]
 jobs:
   Runner:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout master branch
-      uses: actions/checkout@master
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Build container
+        run: docker build -t gAxn-cron -f cron/Dockerfile .
+      - name: "Register valid domain on dev"
+        run: docker run --rm  hp-client-utils pipenv run python3 weather.py $GITHUB_WORKSPACE
 
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.7
+    # steps:
+    # - name: Checkout master branch
+    #   uses: actions/checkout@master
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests click flask pytest
+    # - name: Set up Python 3.7
+    #   uses: actions/setup-python@v2
+    #   with:
+    #     python-version: 3.7
 
-    - name: Run script
-      run: |
-        python cron/weather.py $GITHUB_WORKSPACE
+    # - name: Install dependencies
+    #   run: |
+    #     python -m pip install --upgrade pip
+    #     pip install requests click flask pytest
+
+    # - name: Run script
+    #   run: |
+    #     python cron/weather.py $GITHUB_WORKSPACE
