@@ -14,9 +14,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v1
       - name: Build container
-        run: docker build -t gAxn-cron -f cron/Dockerfile .
+        run: docker build -t gaxn -f cron/Dockerfile .
       - name: "Register valid domain on dev"
-        run: docker run --rm  hp-client-utils pipenv run python3 weather.py $GITHUB_WORKSPACE
+        run: docker run --rm  gaxn pipenv run python3 weather.py $GITHUB_WORKSPACE
 
     # steps:
     # - name: Checkout master branch
