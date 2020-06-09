@@ -11,4 +11,4 @@ COPY cron/Pipfile* /app/
 RUN pipenv sync
 
 ADD cron /app
-
+COPY settings.json /app
